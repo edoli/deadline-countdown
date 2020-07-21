@@ -1,0 +1,51 @@
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.deadline {
+    margin-top: 40px;
+    margin-bottom: 64px;
+}
+
+.title {
+    color: #3498db;
+    font-size: 5em;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: -64px;
+}
+
+.time {
+    justify-content: center;
+    color: #2c3e50;
+    font-size: 13em;
+    margin-bottom: -48px;
+}
+
+.second {
+    color: #e74c3c;
+}
+
+.desc {
+    justify-content: center;
+    color: #2c3e50;
+    font-size: 2em;
+    text-align: center;
+}
+
+.d1 {
+    width: 100px;
+}
+
+.d2 {
+    width: 240px;
+}
+
+.d3, .d4 {
+    width: 160px;
+}
