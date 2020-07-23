@@ -11,7 +11,7 @@ const port = 3428;
 db.defaults({schedules: []}).write();
 
 app.use(express.static('public'));
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get('/schedules/get', (req, res) => res.json({result: db.get('schedules').value()}));
 
