@@ -38,6 +38,7 @@ const countDownTimer = (id, name, date) => {
     `);
 
     let mDate = moment(date);
+    let div = $(`#${id}`);
     let day_div = $(`#${id} .day`);
     let hour_div = $(`#${id} .hour`);
     let minute_div = $(`#${id} .minute`);
@@ -45,6 +46,7 @@ const countDownTimer = (id, name, date) => {
 
     const showRemain = () => {
         let remain = mDate - moment();
+	let redish = Math.max(255 - (remain / 1000 / 60 / 60), 0);
         let days = Math.floor(remain / 1000 / (60 * 60 * 24));
         let hours = Math.floor((remain / 1000 / (60 * 60)) % 24);
         let minutes = Math.floor((remain / 1000 / (60)) % 60);
@@ -52,6 +54,11 @@ const countDownTimer = (id, name, date) => {
         let miliseconds = Math.floor(remain % 1000);
         
         // time_div.text(`${days}:${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}`);
+	day_div.css('color', `rgb(${redish}, 0, 0)`);
+	hour_div.css('color', `rgb(${redish}, 0, 0)`);
+	minute_div.css('color', `rgb(${redish}, 0, 0)`);
+	second_div.css('color', `rgb(${redish / 10 + 228}, 228, 228)`);
+
         day_div.text(padBlank(days, 3));
         hour_div.text(pad(hours, 2));
         minute_div.text(pad(minutes, 2));
@@ -73,7 +80,8 @@ function refresh() {
     });
 }
 
-setInterval(refresh, 1000);
+refresh();
+setInterval(refresh, 60000);
 
 // countDownTimer('cvpr', 'CVPR (추정)', '2020-11-15T04:00Z');
 // countDownTimer('siggraph', 'SIGGRAPH (추정)', '2021-01-23T09:00Z');
