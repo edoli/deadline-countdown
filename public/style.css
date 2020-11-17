@@ -3,6 +3,15 @@
     margin: 0;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .row {
     margin: 0;
 }
