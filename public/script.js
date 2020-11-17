@@ -48,8 +48,7 @@ const countDownTimer = (id, name, date) => {
         let days = Math.floor(remain / 1000 / (60 * 60 * 24));
         let hours = Math.floor((remain / 1000 / (60 * 60)) % 24);
         let minutes = Math.floor((remain / 1000 / (60)) % 60);
-        // let seconds = Math.floor((remain / 1000)  % 60);
-        let seconds = 0;
+        let seconds = Math.floor((remain / 1000)  % 60);
         let miliseconds = Math.floor(remain % 1000);
         
         // time_div.text(`${days}:${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}`);

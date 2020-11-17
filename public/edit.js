@@ -1,5 +1,24 @@
 
 const root = $('.container-fluid');
+const specialTzs = {
+	'GMT': 'GMT',
+	'UTC': 'UTC',
+	'PST': 'America/Los_Angeles'
+};
+const tzs = moment.tz.names();
+const tzSelect = `
+<select name="tz-select" class="tz-select">
+    <optgroup label="standard times">
+      <option value="">Local</option>
+      <option value="GMT">GMT</option>
+      <option value="UTC">UTC</option>
+      <option value="America/Los_Angeles">PST</option>
+    </optgroup>
+    <optgroup label="timezones">
+      ${tzs.map((name) => `<option value="${name}">${name}</option>`)}
+    </optgroup>
+</select>
+`;
 
 function update(id) {
     const elem = $(`#${id}`);
@@ -29,7 +48,7 @@ function remove(id) {
 
 const countDownTimer = (id, name, date) => {
     if (date) {
-        date = new Date(date).toISOString();
+        date = new Date(date + 'Z').toISOString();
         date = date.substring(0, date.length-1);
     }
     root.append(`
@@ -39,8 +58,20 @@ const countDownTimer = (id, name, date) => {
     <input class="input-date" type="datetime-local" value="${date}">
     <button onclick="update(\'${id}\')">Update</button>
     <button onclick="remove(\'${id}\')">Delete</button>
+
+    ${tzSelect} 
+    <div class="timezone"></div>
 </div>
     `);
+    let tzText = root.find(`#${id} .timezone`);
+    root.find(`#${id} .tz-select`).change((value) => {
+	    let tz = value.target.value;
+	    if (tz != '') {
+	      tzText.text(moment(date).tz(tz).format());
+	    } else {
+	      tzText.text(moment(date).format());
+	    }
+    });
 }
 
 $.get('/schedules/get', (res) => {

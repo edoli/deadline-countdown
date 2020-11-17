@@ -29,7 +29,7 @@
 
 .second {
     /* color: #e74c3c; */
-    color: #2c3e50;
+    color: #e4e4e4;
 }
 
 .desc {
@@ -37,6 +37,10 @@
     color: #2c3e50;
     font-size: 2em;
     text-align: center;
+}
+
+.schedule-item div {
+    display: inline-block;
 }
 
 .d1 {
